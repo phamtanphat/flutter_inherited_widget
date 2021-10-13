@@ -41,11 +41,24 @@ class OngBa extends StatelessWidget {
   }
 }
 
-class Chame extends StatelessWidget {
+class Chame extends StatefulWidget {
 
   Widget child;
 
   Chame({required this.child});
+
+  @override
+  _ChameState createState() => _ChameState();
+
+  static _ChameState? of(BuildContext context){
+    return context.findAncestorStateOfType<_ChameState>();
+  }
+}
+// state object
+
+class _ChameState extends State<Chame> {
+
+  int number = 123;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +68,7 @@ class Chame extends StatelessWidget {
       child: Column(
         children: [
           Text("Cha me"),
-          child
+          widget.child
         ],
       ),
     );
@@ -65,6 +78,8 @@ class Chame extends StatelessWidget {
 class Concai extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    int? number = Chame.of(context)?.number;
+    print(number);
     return Container(
       child: Text("Con cai"),
     );
