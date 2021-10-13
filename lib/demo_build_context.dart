@@ -8,7 +8,11 @@ class DemoBuildContextPage extends StatelessWidget {
         title: Text("Demo Build Context"),
       ),
       body: Container(
-        child: ,
+        child: OngBa(
+          child: Chame(
+            child: Concai(),
+          ),
+        ),
       ),
     );
   }
@@ -17,9 +21,13 @@ class DemoBuildContextPage extends StatelessWidget {
 class OngBa extends StatelessWidget {
 
   Widget child;
+  String title = "abc";
 
   OngBa({required this.child});
 
+  static OngBa? of(BuildContext context){
+    return context.findAncestorWidgetOfExactType<OngBa>();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,6 +49,8 @@ class Chame extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    OngBa? ongBa = OngBa.of(context);
+    print(ongBa?.title);
     return Container(
       child: Column(
         children: [
@@ -60,5 +70,7 @@ class Concai extends StatelessWidget {
     );
   }
 }
+
+
 
 
