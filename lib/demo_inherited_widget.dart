@@ -24,7 +24,7 @@ class CounterPage extends StatefulWidget {
 }
 
 class _CounterPageState extends State<CounterPage> {
-  int count = 0;
+  int count = 10;
   int number = 0;
 
   @override
@@ -52,6 +52,11 @@ class ContainerInheritedWidget extends InheritedWidget {
   ContainerInheritedWidget({required this.child, required this.state})
       : super(child: child);
 
+  static ContainerInheritedWidget of (BuildContext context){
+    // truy cap vao lop inherited o day
+    return context.dependOnInheritedWidgetOfExactType()!;
+  }
+
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget) {
     return true;
@@ -61,9 +66,10 @@ class ContainerInheritedWidget extends InheritedWidget {
 class CounterText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ContainerInheritedWidget inheritedWidget = ContainerInheritedWidget.of(context);
     return Container(
       child: Center(
-        child: Text("Count : 0"),
+        child: Text("Count : ${inheritedWidget.state.count}"),
       ),
     );
   }
